@@ -2,6 +2,27 @@
 User workflows and technical specification for Peep: Encrypted Exchange Program
 
 ### Basics of Mermaid and the System
+```mermaid
+sequenceDiagram
+    participant A as Artist
+    participant P as Peepbot
+    participant V as Validator
+    participant I as Image Processor
+    participant C as Customer
+    participant CDN as CDN
+    participant M as Moderator
+    P-->>A: Bot dialog is dotted lines
+    A->>P: Human dialog is solid lines.
+    A->>M: This is good.
+    C->>A: This should never happen.
+    A->>V: Neither should this.
+    A->>I: Or this.
+    C->>P: Okay, if customer buys an artist's SignalApp UUID
+    P-->>A: And the artists confirms.
+    A->>P: "Yes, Foo can DM"
+    P->>C: You can now DM "Artist" at "+1-555-AAA-BBBB"
+    C->>A: Then this can happen...
+```
 [![basics on mermaid.ink](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgcGFydGljaXBhbnQgQSBhcyBBcnRpc3RcbiAgICBwYXJ0aWNpcGFudCBQIGFzIFBlZXBib3RcbiAgICBwYXJ0aWNpcGFudCBWIGFzIFZhbGlkYXRvclxuICAgIHBhcnRpY2lwYW50IEkgYXMgSW1hZ2UgUHJvY2Vzc29yXG4gICAgcGFydGljaXBhbnQgQyBhcyBDdXN0b21lclxuICAgIHBhcnRpY2lwYW50IENETiBhcyBDRE5cbiAgICBwYXJ0aWNpcGFudCBNIGFzIE1vZGVyYXRvclxuICAgIFAtLT4-QTogQm90IGRpYWxvZyBpcyBkb3R0ZWQgbGluZXNcbiAgICBBLT4-UDogSHVtYW4gZGlhbG9nIGlzIHNvbGlkIGxpbmVzLlxuICAgIEEtPj5NOiBUaGlzIGlzIGdvb2QuXG4gICAgQy0-PkE6IFRoaXMgc2hvdWxkIG5ldmVyIGhhcHBlbi5cbiAgICBBLT4-VjogTmVpdGhlciBzaG91bGQgdGhpcy5cbiAgICBBLT4-STogT3IgdGhpcy5cbiAgICBDLT4-UDogT2theSwgaWYgY3VzdG9tZXIgYnV5cyBhbiBhcnRpc3QncyBTaWduYWxBcHAgVVVJRFxuICAgIFAtLT4-QTogQW5kIHRoZSBhcnRpc3RzIGNvbmZpcm1zLlxuICAgIEEtPj5QOiBcIlllcywgRm9vIGNhbiBETVwiXG4gICAgUC0-PkM6IFlvdSBjYW4gbm93IERNIFwiQXJ0aXN0XCIgYXQgXCIrMS01NTUtQUFBLUJCQkJcIlxuICAgIEMtPj5BOiBUaGVuIHRoaXMgY2FuIGhhcHBlbi4uLiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgcGFydGljaXBhbnQgQSBhcyBBcnRpc3RcbiAgICBwYXJ0aWNpcGFudCBQIGFzIFBlZXBib3RcbiAgICBwYXJ0aWNpcGFudCBWIGFzIFZhbGlkYXRvclxuICAgIHBhcnRpY2lwYW50IEkgYXMgSW1hZ2UgUHJvY2Vzc29yXG4gICAgcGFydGljaXBhbnQgQyBhcyBDdXN0b21lclxuICAgIHBhcnRpY2lwYW50IENETiBhcyBDRE5cbiAgICBwYXJ0aWNpcGFudCBNIGFzIE1vZGVyYXRvclxuICAgIFAtLT4-QTogQm90IGRpYWxvZyBpcyBkb3R0ZWQgbGluZXNcbiAgICBBLT4-UDogSHVtYW4gZGlhbG9nIGlzIHNvbGlkIGxpbmVzLlxuICAgIEEtPj5NOiBUaGlzIGlzIGdvb2QuXG4gICAgQy0-PkE6IFRoaXMgc2hvdWxkIG5ldmVyIGhhcHBlbi5cbiAgICBBLT4-VjogTmVpdGhlciBzaG91bGQgdGhpcy5cbiAgICBBLT4-STogT3IgdGhpcy5cbiAgICBDLT4-UDogT2theSwgaWYgY3VzdG9tZXIgYnV5cyBhbiBhcnRpc3QncyBTaWduYWxBcHAgVVVJRFxuICAgIFAtLT4-QTogQW5kIHRoZSBhcnRpc3RzIGNvbmZpcm1zLlxuICAgIEEtPj5QOiBcIlllcywgRm9vIGNhbiBETVwiXG4gICAgUC0-PkM6IFlvdSBjYW4gbm93IERNIFwiQXJ0aXN0XCIgYXQgXCIrMS01NTUtQUFBLUJCQkJcIlxuICAgIEMtPj5BOiBUaGVuIHRoaXMgY2FuIGhhcHBlbi4uLiIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9)
 
 ### New set workflow.
