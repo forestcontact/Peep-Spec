@@ -1,6 +1,15 @@
 # Peep-Spec
 User workflows and technical specification for Peep: Encrypted Exchange Program
 
+## Peep, for artists
+
+> so we're building a "content marketplace" that lets artists sell their content like onlyfans or fansly, get paid 90% 60seconds later by the creator's choice of amazon wishlist items, store credit, or like... cash app transfer
+> 
+> the fancy part is that we are actually trying to let folks setup their own stores, even if they don't know anything about making their own website, and do it in a way that's really really cheap (free?) to run
+> 
+> and then you can link your store & profile with your friends stores and vice-versa, and everyone linked shares whatever costs (and maybe some small % of what you each earn, so that if someone has a bad month, they still can make a base amount)
+
+
 ### Basics of Mermaid and the System
 ```mermaid
 sequenceDiagram
