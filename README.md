@@ -9,6 +9,15 @@ User workflows and technical specification for Peep: Encrypted Exchange Program
 > 
 > and then you can link your store & profile with your friends stores and vice-versa, and everyone linked shares whatever costs (and maybe some small % of what you each earn, so that if someone has a bad month, they still can make a base amount)
 
+### The short version.
+
+ * content marketplace
+ * 60sec payment, low fees
+ * easy deploy
+ * free-ish to run
+ * federation
+ * social linking to provide social safetynet
+
 
 ### Basics of Mermaid and the System
 ```mermaid
